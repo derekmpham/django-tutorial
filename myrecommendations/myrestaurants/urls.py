@@ -25,6 +25,37 @@ urlpatterns = [
 		DetailView.as_view(
 			model=Dish,
 			plate_name='myrestaurants/dish_detail.html'),
-		name='dish_detail')
+		name='dish_detail'),
+
+# Create a restaurant
+	url(r'\^restaurants/create/\$',
+		RestaurantCreate.as_view(),
+		name='restaurant_create'),
+
+# Edit restaurant details
+	url(r'\^restaurants/(?P<pk>\d+)/edit/\$',
+		UpdateView.as_view(
+			model = Restaurant,
+			template_name = 'myrestaurants/form.html',
+			form_class = RestaurantForm),
+		name='restaurant_edit'),
+
+# Create a restaurant dish
+	url(r'\^restaurants/(?P<pk>\\d+)/dishes/create/\$',
+		DishCreate.as_view(),
+		name='dish_create'),
+
+# Edit restaurant dish details
+	url(r'\^restaurants/(?P<pkr>\\d+)/dishes/(?P<pk>\\d+)/edit/\$',
+		UpdateView.as_view(
+			model = Dish,
+			template_name = 'myrestaurants/form.html',
+			form_class = DishForm),
+		name='dish_edit'),
+
+# Create restaurant review
+	url(r'\^restaurants/(?P<pk>\\d+)/reviews/create/\$',
+		'myrestaurants.views.review',
+		name='review_create'),
 
 ]
