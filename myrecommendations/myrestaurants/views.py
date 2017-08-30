@@ -32,7 +32,15 @@ class RestaurantCreate(CreateView):
 		return super(RestaurantCreate, self).form_valid(form)
 
 
+class DishCreate(CreateView):
+	model = Dish
+	template_name = 'myrestaurants/form.html'
+	form_class = DishForm
 
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		form.instance.restaurant = Restaurant.objects.get(id=self.kwargs['pk'])
+		return super(DishCreate, self).form_valid(form)
 
 
 
