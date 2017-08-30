@@ -22,6 +22,16 @@ class RestaurantDetail(DetailView):
 		return context
 
 
+class RestaurantCreate(CreateView):
+	model = Restaurant
+	template_name = 'myrestaurants/form.html'
+	form_class = RestaurantForm
+
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(RestaurantCreate, self).form_valid(form)
+
+
 
 
 
