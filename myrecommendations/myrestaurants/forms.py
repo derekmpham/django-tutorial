@@ -5,3 +5,9 @@ class RestaurantForm(ModelForm):
 	class Meta:
 		model = Restaurant
 		exclude ('user', 'date',)
+
+class DishForm(ModelForm):
+	class Meta:
+		model = Dish
+		exclude = ('user', 'date', 'restaurant',)
+		
