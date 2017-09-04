@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib.auth.views import login, logout
 from django.views.static import serve
 from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'\^myrestaurants/', include('myrestaurants.urls', namespace='myrestaurants')),
+    url(r'^accounts/login/$', login, name='login'),
+    url(r'^accounts/logout/$', logout, name='logout'),
+    url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 # if settings.DEBUG:
