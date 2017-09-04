@@ -15,16 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'\^myrestaurants/', include('myrestaurants.urls', namespace='myrestaurants')),
 ]
 
-from django.conf import settings
-
-if settings.DEBUG:
-	urlpatterns += patterns('',
-		url(r'\^media/(?P<path>.\*)\$', 'django.views.static.serve', 
-    		{'document_root': settings.MEDIA_ROOT, }),
-)
+# if settings.DEBUG:
+urlpatterns += [
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, })
+]
