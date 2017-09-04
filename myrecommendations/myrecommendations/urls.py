@@ -20,3 +20,11 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'\^myrestaurants/', include('myrestaurants.urls', namespace='myrestaurants')),
 ]
+
+from django.conf import settings
+
+if settings.DEBUG:
+	urlpatterns += patterns('',
+		url(r'\^media/(?P<path>.\*)\$', 'django.views.static.serve', 
+    		{'document_root': settings.MEDIA_ROOT, }),
+)
