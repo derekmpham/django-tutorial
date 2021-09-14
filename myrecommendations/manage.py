@@ -1,3 +1,6 @@
+# THIS COMMENT IS CODE MODIFICATION FOR COMS W4156 "Homework Zero"
+
+
 #!/usr/bin/env python
 import os
 import sys
